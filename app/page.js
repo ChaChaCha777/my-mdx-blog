@@ -1,13 +1,6 @@
 'use client'
 import { useState } from "react"
-
-function Card({children = "何も渡されていません"}) {
-  return (
-    <div className="border rounded-md border-gray-600 px-4">
-      {children}
-    </div>
-  )
-}
+import Card from "@/components/card"
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(true)
