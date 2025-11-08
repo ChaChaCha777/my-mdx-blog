@@ -1,4 +1,5 @@
 'use client'
+import { useState } from "react"
 
 function Card({children = "何も渡されていません"}) {
   return (
@@ -9,10 +10,10 @@ function Card({children = "何も渡されていません"}) {
 }
 
 export default function Home() {
+  const [label, setLabel] = useState('Show')
   const name = 'ChaCha'
   const handleClick = (e) => {
-    console.log(e)
-    alert('Hello')
+    setLabel(label == 'Show' ? 'Hide' : 'Show')
   }
   return (
     <>
@@ -26,7 +27,7 @@ export default function Home() {
         <Card></Card>
         <Card></Card>
         <Card></Card>
-        <button onClick={handleClick}>クリック</button>
+        <button onClick={handleClick}>{label}</button>
       </div>
     </>
   );
