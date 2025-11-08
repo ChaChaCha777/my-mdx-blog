@@ -10,24 +10,30 @@ function Card({children = "何も渡されていません"}) {
 }
 
 export default function Home() {
-  const [label, setLabel] = useState('Show')
+  const [isVisible, setIsVisible] = useState(true)
   const name = 'ChaCha'
   const handleClick = (e) => {
-    setLabel(label == 'Show' ? 'Hide' : 'Show')
+    setIsVisible(!isVisible)
   }
   return (
     <>
       <div className="p-20 space-y-4">
         <div>Hello, {name}</div>
+        {isVisible && 
+        <>
         <Card>親から文字列が渡されました</Card>
         <Card>
           <div>コンポーネントを渡しました</div>
           <Card>ネスト</Card>
         </Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <button onClick={handleClick}>{label}</button>
+        <Card/>
+        <Card/>
+        <Card/>
+        </>
+        }
+        <button onClick={handleClick}>
+         {isVisible ? 'Hide' : 'Show'}
+        </button>
       </div>
     </>
   );
