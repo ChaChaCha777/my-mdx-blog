@@ -1,7 +1,7 @@
-function Card(props) {
+function Card({children = "何も渡されていません"}) {
   return (
     <div className="border rounded-md border-gray-600 px-4">
-      {props.text}
+      {children}
     </div>
   )
 }
@@ -12,8 +12,11 @@ export default function Home() {
     <>
       <div className="p-20 space-y-4">
         <div>Hello, {name}</div>
-        <Card text="親から渡された文字列"/>
-        <Card />
+        <Card>親から文字列が渡されました</Card>
+        <Card>
+          <div>コンポーネントを渡しました</div>
+          <Card>ネスト</Card>
+        </Card>
         <Card />
         <Card />
         <Card />
