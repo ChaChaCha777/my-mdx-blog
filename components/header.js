@@ -1,13 +1,9 @@
-import Link from "next/link"
+import Navigation from "./navigation"
 
 function Header() {
     return (
         <header> 
-          どのページにも見える
-          <ul className="flex space-x-4">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/about">About</Link></li>
-          </ul>
+          <Navigation />
         </header>
     )
 }
