@@ -1,18 +1,15 @@
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { loadPost } from '@/lib/posts'
+import { getPost } from '@/lib/posts'
 
-async function BlogPage({ params }) {
+export default async function BlogPage({ params }) {
     const { slug } = await params
     
-    let markdown
+    let post
     
-    markdown = loadPost(slug)
+    post = await getPost(slug)
 
     return (
         <article className="prose dark:prose-invert">
-            <MDXRemote source={markdown}/>
+            {post.content}
         </article>
     )
 }
-
-export default BlogPage
