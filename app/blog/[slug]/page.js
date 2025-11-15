@@ -1,12 +1,13 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import fs from 'fs'
-import path from 'path'
+import { loadPost } from '@/lib/posts'
 
 async function BlogPage({ params }) {
     const { slug } = await params
-    const markdown = fs.readFileSync(
-        path.join(process.cwd(), 'content', `${slug}.mdx`)
-    )
+    
+    let markdown
+    
+    markdown = loadPost(slug)
+
     return (
         <article className="prose dark:prose-invert">
             <MDXRemote source={markdown}/>
