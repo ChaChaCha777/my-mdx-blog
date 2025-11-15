@@ -2,7 +2,7 @@ import Link from "next/link"
 
 function Header() {
     return (
-        <header className="p-20 border border-yellow-400"> 
+        <header> 
           どのページにも見える
           <ul className="flex space-x-4">
             <li><Link href="/">Home</Link></li>
