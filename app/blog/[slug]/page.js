@@ -1,4 +1,9 @@
-import { getPost } from '@/lib/posts'
+import { getPost as getPostNotCached } from '@/lib/posts'
+import { cache } from 'react'
+
+const getPost = cache(
+    async (slug) => await getPostNotCached(slug)
+)
 
 export async function generateMetadata({ params }, parent) {
     const { slug } = await params 
