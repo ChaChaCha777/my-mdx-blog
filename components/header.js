@@ -6,7 +6,7 @@ function Header() {
         <header className="flex justify-between md:items-center mt-4"> 
           <div className="flex items-center md:space-x-12">
             <div className="hidden md:block">
-              <Link href="/" className="text-xl">ChaCha's Blog</Link>
+              <Link href="/" className="text-xl font-mono">ChaCha's Blog</Link>
             </div>
             <Navigation />
           </div>

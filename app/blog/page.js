@@ -1,3 +1,4 @@
+import H1 from '@/components/h1'
 import Pagination from '@/components/pagination'
 import { getPosts } from '@/lib/posts'
 import Link from 'next/link'
@@ -18,8 +19,7 @@ export default async function BlogPostPage({ searchParams })
         })
         return (
             <>
-                <h1 className='mb-8 text-xl'>最近の投稿</h1>
-
+                <H1>最近の投稿</H1>
                 <div className='text-lg text-gray-600 dark:text-gray-400 mb-8'>
                     最近の投稿をチェックする。
                 </div>
