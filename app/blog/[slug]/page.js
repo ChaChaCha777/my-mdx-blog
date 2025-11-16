@@ -1,5 +1,12 @@
 import { getPost } from '@/lib/posts'
 
+export async function generateMetadata({ params }, parent) {
+    const { slug } = await params 
+    const { frontmatter } = await getPost(slug)
+    return frontmatter
+}
+
+
 export default async function BlogPage({ params }) {
     const { slug } = await params
     
@@ -13,3 +20,5 @@ export default async function BlogPage({ params }) {
         </article>
     )
 }
+
+
