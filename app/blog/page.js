@@ -4,10 +4,12 @@ import Link from 'next/link'
 export default async function BlogPostPage({ searchParams })
     {
         const { tags:tagString } = await searchParams
+        const { order = 'newest' } = await searchParams
         const tags = tagString?.split('.')
         console.log(tags)
         const posts = await getPosts({
-            tags
+            tags,
+            newest: order === 'newest'
         })
         return (
             <>
@@ -18,6 +20,12 @@ export default async function BlogPostPage({ searchParams })
                 </div>
 
                 <hr />
+
+                <div className='mb-8'>
+                    Display&nbsp;
+                    {order == 'newest' && <Link href="/blog?order=oldest" className="underline">oldest</Link>}
+                    {order == 'oldest' && <Link href="/blog?order=newest" className="underline">newest</Link>}
+                </div>
 
                 <ul className='grid grid-cols-1 md:grid-cols-2 gap-8'>
                     {posts.map(post =>(
