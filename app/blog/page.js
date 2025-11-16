@@ -1,3 +1,4 @@
+import Pagination from '@/components/pagination'
 import { getPosts } from '@/lib/posts'
 import Link from 'next/link'
 
@@ -5,11 +6,15 @@ export default async function BlogPostPage({ searchParams })
     {
         const { tags:tagString } = await searchParams
         const { order = 'newest' } = await searchParams
+        const { page = 1 } = await searchParams
+        const { limit = 3 } = await searchParams
+       
         const tags = tagString?.split('.')
-        console.log(tags)
-        const posts = await getPosts({
+        const { posts, pageCount } = await getPosts({
             tags,
-            newest: order === 'newest'
+            newest: order === 'newest',
+            page,
+            limit
         })
         return (
             <>
@@ -35,6 +40,12 @@ export default async function BlogPostPage({ searchParams })
                         </li>
                     ))}
                 </ul>
+
+                <div className='mt-8'>
+                    <Pagination pageCount={pageCount}>
+
+                    </Pagination>
+                </div>
             </>
         )
 }
