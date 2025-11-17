@@ -1,7 +1,7 @@
-import { cookies as getCookies} from "next/headers"
+import { cookies } from "next/headers"
 
-const useServerDarkMode = async (defalutTheme = 'dark') => {
-    const cookieStore = await getCookies()
+const useServerDarkMode = async(defalutTheme = 'dark') => {
+    const cookieStore = await cookies();
     return cookieStore.get('theme')?.value ?? defalutTheme
 }
 
