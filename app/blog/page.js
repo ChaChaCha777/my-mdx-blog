@@ -20,12 +20,14 @@ export default async function BlogPostPage({ searchParams })
         })
         return (
             <>
-                <H1>#{tagString}&nbsp;の記事一覧</H1>
+                <H1>
+                    {tags?.length > 0 ? `#${tagString} の記事一覧` : "記事一覧"}
+                </H1>
                 <hr />
 
                 <div className='mb-8'>
-                    {order == 'newest' && <Link href="/blog?order=oldest" className="underline">古い順</Link>}
-                    {order == 'oldest' && <Link href="/blog?order=newest" className="underline">新しい順</Link>}
+                    {order == 'newest' && <Link href={`/blog?order=oldest&tags=${tagString}`} className="underline">古い順</Link>}
+                    {order == 'oldest' && <Link href={`/blog?order=newest&tags=${tagString}`}  className="underline">新しい順</Link>}
                     &nbsp;に表示する
                 </div>
 
