@@ -41,9 +41,7 @@ export default async function BlogPostPage({ searchParams })
                 </ul>
 
                 <div className='mt-8'>
-                    <Pagination pageCount={pageCount}>
-
-                    </Pagination>
+                    <Pagination pageCount={pageCount} />
                 </div>
             </>
         )

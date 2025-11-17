@@ -23,18 +23,23 @@ export default async function RootLayout({ children }) {
   const theme = await useServerDarkMode()
 
   return (
-    <html lang="ja" className={theme}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <CookiesProviderClient>
-          <Header />           
-          <main className="mt-12">
-            {children}
-          </main>
-          <footer></footer>
-        </CookiesProviderClient>
-      </body>
-    </html>
+    <>
+        <head>
+          <link href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" rel="stylesheet" />
+        </head>
+        <html lang="ja" className={theme}>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          >
+            <CookiesProviderClient>
+              <Header />           
+              <main className="mt-12">
+                {children}
+              </main>
+              <footer></footer>
+            </CookiesProviderClient>
+          </body>
+        </html>
+    </>
   );
 }

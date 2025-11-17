@@ -1,0 +1,56 @@
+---
+title: ABC419
+date: 2025-08-18
+tags: 
+    - atcoder
+---
+## 問題
+長さ$N$の整数列$A=(A_1,A_2,\dots,A_N)$が与えられる。以下の操作を繰り返し行うことにより、$A$のすべての長さ$L$の連続部分列についてその総和が$M$の倍数となるようにしたい。
+
+- $1\leq i\leq N$なる整数$i$を選び、$A_i$の値を$1$増やす。
+
+目的を達成するまでの操作回数として考えられる最小値を求めよ。
+
+## 制約
+- $1\leq N,M\leq 500$
+- $1\leq L\leq N$
+- $0≤A_i< M$
+
+## 考察
+目的を達成するには、次の2つの条件を満たせばよい。
+1. 初めの連続部分列の総和が$M$で割り切れる。
+2. $A_i \equiv A_{i+L}$
+
+条件2をさらに整理したい。$L$だけ離れている数を同じグループだと考え、各グループを$1,\dots,L$で指定することにする。また、グループ$g$の、最終的な$M$で割った余りを$m_g$とする。長さ$L$の連続部分列には、各グループの値が一つずつ含まれているから、その総和は$\sum_{g=1}^L m_{g}$である。さらに条件1も考えれば、総和を$M$で割った余りは0でなければならない。
+
+以上より、グループ$g$の最終的な余りを$m_g$とするのに必要な最小操作回数を$\mathrm{cost}(g, m_g)$とすると、$\sum_{g=1}^{L} m_{g} \equiv 0$の下で、$\sum_{g=1}^{L}\mathrm{cost}(g, m_g)$の最小値を求めなければならない。
+
+この最小値は動的計画法によって求めることができる。$\mathrm{dp}[i][j]$を、$1$から$i$番目のグループの剰余の総和を$j$とするために必要な操作の最小回数とすればよい。
+
+```python
+N, M, L = map(int, input().split())
+
+A = list(map(int, input().split()))
+
+# cost[i][m] = グループiの剰余をjとするために必要な最小操作回数
+cost = [[0 for _ in range(M)] for _ in range(L)]
+for i in range(N):
+    g = i % L
+    for j in range(M):
+        cost[g][j] += (j - A[i]) % M
+
+INF = float("inf")
+
+dp = [[INF for _ in range(M)] for _ in range(L+1)]
+
+dp[0][0] = 0
+
+for i in range(L):
+    for j in range(M):
+        for k in range(M):
+            dp[i + 1][(j + k) % M] = min(dp[i + 1][(j + k) % M], dp[i][j] + cost[i][k])
+
+print(dp[L][0])
+```
+
+

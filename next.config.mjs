@@ -1,15 +1,13 @@
 import createMDX from '@next/mdx'
- 
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configure `pageExtensions` to include markdown and MDX files
+  // .mdx拡張子のファイルを許可
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-  // Optionally, add any other Next.js config below
+  // オプションで、他のNext.js設定をここに追加してください
 }
  
-const withMDX = createMDX({
-  // Add markdown plugins here, as desired
-})
+const withMDX = createMDX({})
  
-// Merge MDX config with Next.js config
+// MDXとNext.js設定を統合
 export default withMDX(nextConfig)

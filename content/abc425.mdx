@@ -1,0 +1,54 @@
+---
+title: ABC425
+date: 2025-09-28
+tags: 
+    - atcoder
+---
+
+## 問題
+長さ$N$の整数列$A=(A_1,A_2,\dots,A_N)$が与えられる。$Q$個のクエリが与えられるので順に処理しなさい。クエリは2種類あり、以下のいずれかの形式で与えられる。
+
+1. `c`: $A$の先頭の要素を末尾に移動させる操作を$c$回行う。
+2. `l r`: $\sum_i^r A_i$の値を出力する。
+
+## 制約
+- $1\leq N\leq 2\times10^5$
+- $1\leq Q\leq 2\times10^5$
+
+## 考察
+クエリ2を愚直にシミュレートすると、計算量は$ \mathrm\{O\}(NQ) $でTLEとなってしまう。これは累積和を事前計算すれば避けられる。累積和を計算してもクエリ1毎にc回だけ数列を回転させるとやはりTLEとなってしまう。そこで、これまでに何回回転させたかを管理して、それを$L$で割った余りだけ$l$と$r$をオフセットさせれば良い。注意が必要なのは$l>r$となる場合で、累積和の計算を変更する必要がある。単純な累積和$S[r]-S[l-1]$ではなく、全体の和からそれを引いたものを出力する。
+
+```python
+N, Q = map(int, input().split())
+A = list(map(int, input().split()))
+
+# これまでに入力されたcの総和
+counter = 0
+
+# 累積和。1-indexedであることに注意。
+cum_sum = [0]
+for a in A:
+    cum_sum.append(cum_sum[-1] + a)
+
+total = sum(A)
+
+for i in range(Q):
+    query = input()
+    
+    if query[0] == "1":
+        c = int(query.split()[1])
+        counter += c
+
+    else:
+        # 0-indexedに直す
+        l = int(query.split()[1]) - 1
+        r = int(query.split()[2]) - 1
+
+        l = (l + counter % N) % N
+        r = (r + counter % N) % N
+
+        if (l <= r):
+            print(cum_sum[r + 1] - cum_sum[l])
+        else:
+            print(total - (cum_sum[l] - cum_sum[r + 1]))
+ ```
