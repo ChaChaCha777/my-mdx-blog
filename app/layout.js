@@ -32,11 +32,13 @@ export default async function RootLayout({ children }) {
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >
             <CookiesProviderClient>
-              <Header />           
+              <Header />        
               <main className="mt-12">
                 {children}
               </main>
-              <footer></footer>
+              <footer className="flex justify-center py-8 my-4 border-t border-t-gray-800 font-mono">
+                &copy; 2025 ChaCha's Blog
+              </footer>
             </CookiesProviderClient>
           </body>
         </html>
