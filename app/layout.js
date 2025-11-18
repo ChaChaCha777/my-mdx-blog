@@ -25,6 +25,7 @@ export default async function RootLayout({ children }) {
         <head>
           <link href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" rel="stylesheet" />
         </head>
+
         <html lang="ja" suppressHydrationWarning>
           <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -42,6 +43,7 @@ export default async function RootLayout({ children }) {
           {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
             <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
             )}
+          { console.log("GA ID:", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID) }
         </html>
     </>
   );
