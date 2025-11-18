@@ -1,8 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
-import useServerDarkMode from "@/hooks/use-server-dark-mode";
-import CookiesProviderClient from "@/components/cookies-provider-client";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,26 +19,24 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const theme = await useServerDarkMode()
-
   return (
     <>
         <head>
           <link href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" rel="stylesheet" />
         </head>
-        <html lang="ja" className={theme}>
+        <html lang="ja" suppressHydrationWarning>
           <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >
-            <CookiesProviderClient>
-              <Header />        
-              <main className="mt-12">
-                {children}
-              </main>
-              <footer className="flex justify-center py-8 my-4 border-t border-t-gray-200 dark:border-t-gray-800 font-mono">
-                &copy; 2025 ChaCha's Blog
-              </footer>
-            </CookiesProviderClient>
+              <ThemeProvider attribute="class">
+                <Header />
+                <main className="mt-12">
+                  {children}
+                </main>
+                <footer className="flex justify-center py-8 my-4 border-t border-t-gray-200 dark:border-t-gray-800 font-mono">
+                  &copy; 2025 ChaCha's Blog
+                </footer>
+              </ThemeProvider>
           </body>
         </html>
     </>
