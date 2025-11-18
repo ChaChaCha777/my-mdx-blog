@@ -6,18 +6,21 @@ import Link from 'next/link'
 
 export default async function BlogPostPage({ searchParams })
     {
-        const { tags:tagString } = await searchParams
+        const { tags:tagString = "" } = (await searchParams)
         const { order = 'newest' } = await searchParams
         const { page = 1 } = await searchParams
         const { limit = 8 } = await searchParams
        
-        const tags = tagString?.split('.')
+        const tags = tagString === "" ? null : tagString?.split('.')
         const { posts, pageCount } = await getPosts({
             tags,
             newest: order === 'newest',
             page,
             limit
         })
+
+        console.log(tagString)
+        console.log(tags)
         return (
             <>
                 <H1>
