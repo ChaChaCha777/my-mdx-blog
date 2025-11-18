@@ -18,9 +18,6 @@ export default async function BlogPostPage({ searchParams })
             page,
             limit
         })
-
-        console.log(tagString)
-        console.log(tags)
         return (
             <>
                 <H1>
