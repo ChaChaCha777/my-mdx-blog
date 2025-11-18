@@ -7,7 +7,7 @@ function Navigation() {
                 <li><Link href="/" className={`${styles.link} inline md:hidden`}>Home</Link></li>
                 <li><Link href="/about" className={styles.link}>About</Link></li>
                 <li><Link href="/blog" className={styles.link}>Blogs</Link></li>
-                
+                <li><Link href="/tags" className={styles.link}>Tags</Link></li>
               </ul>
         </nav>
     )
