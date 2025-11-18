@@ -8,8 +8,17 @@ module.exports = {
     theme: {
         extend: {
         },
+        hljs: {
+            theme: "github-dark",
+        },
     },
     plugins: [
-        require('@tailwindcss/typography')
+        require('@tailwindcss/typography'),
+        require("tailwind-highlightjs"),
     ],
+    safelist: [
+    {
+      pattern: /hljs+/,
+    },
+  ],
 }

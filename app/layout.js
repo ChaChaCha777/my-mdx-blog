@@ -36,7 +36,7 @@ export default async function RootLayout({ children }) {
               <main className="mt-12">
                 {children}
               </main>
-              <footer className="flex justify-center py-8 my-4 border-t border-t-gray-800 font-mono">
+              <footer className="flex justify-center py-8 my-4 border-t border-t-gray-200 dark:border-t-gray-800 font-mono">
                 &copy; 2025 ChaCha's Blog
               </footer>
             </CookiesProviderClient>

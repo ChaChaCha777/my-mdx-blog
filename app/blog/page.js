@@ -24,9 +24,10 @@ export default async function BlogPostPage({ searchParams })
         return (
             <>
                 <H1>
-                    {tags?.length > 0 ? `#${tagString} の記事一覧` : "記事一覧"}
+                    <span className='text-gray-400'>
+                        {tags?.length > 0 ? `#${tagString} ` : "すべて"}
+                    </span>の記事
                 </H1>
-                <hr />
 
                 <div className='mb-8'>
                     {order == 'newest' && <Link href={`/blog?order=oldest&tags=${tagString}`} className="underline">古い順</Link>}
