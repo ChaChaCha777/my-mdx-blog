@@ -3,6 +3,10 @@ import "./globals.css";
 import Header from "@/components/header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { GoogleAnalytics } from "@next/third-parties/google"
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import Footer from "@/components/footer";
+config.autoAddCss = false
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,9 +39,7 @@ export default async function RootLayout({ children }) {
                 <main className="mt-12">
                   {children}
                 </main>
-                <footer className="flex justify-center py-8 my-4 border-t border-t-gray-200 dark:border-t-gray-800 font-mono">
-                  &copy; 2025 ChaCha's Blog
-                </footer>
+                <Footer />
               </ThemeProvider>
           </body>
           {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
